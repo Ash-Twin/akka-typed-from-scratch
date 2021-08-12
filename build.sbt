@@ -11,7 +11,8 @@ val AkkaStack = Seq(
   "com.typesafe.akka" %% "akka-actor-typed"         % AkkaVersion,
   "com.typesafe.akka" %% "akka-http"                % AkkaHttpVersion,
   "com.typesafe.akka" %% "akka-actor-testkit-typed" % AkkaVersion % Test,
-  "org.scalatest"     %% "scalatest"                % "3.2.9"     % Test
+  "org.scalatest"     %% "scalatest"                % "3.2.9"     % Test,
+  "ch.qos.logback"     % "logback-classic"          % "1.1.3"     % Runtime
 )
 
 ThisBuild / libraryDependencies ++= AkkaStack

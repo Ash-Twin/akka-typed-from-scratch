@@ -1,8 +1,8 @@
-package me.jamesliu.configuration
+package me.jamesliu.actor
 
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorRef, Behavior}
-import me.jamesliu.configuration.Configuration.{MerchantConfiguration, MerchantId}
+import me.jamesliu.actor.Configuration.{MerchantConfiguration, MerchantId}
 
 object Configuration {
   sealed trait Message
@@ -16,10 +16,7 @@ object Configuration {
   case class BankIdentifier(id: String) extends AnyVal
 
   case class MerchantConfiguration(bankIdentifier: BankIdentifier)
-}
-class Configuration  {
-
-  var configuration: Map[MerchantId, MerchantConfiguration] = Map.empty
+  var configuration: Map[MerchantId, MerchantConfiguration] = Map(MerchantId("James")->MerchantConfiguration(BankIdentifier("bank_identifier_1")))
 
   def apply(): Behavior[Configuration.Message] = Behaviors.receive { (context, message) =>
     context.log.info(s"arriving message type: ${message.getClass.toString} -> ${message.toString}")
@@ -35,5 +32,4 @@ class Configuration  {
         }
     }
   }
-
 }
