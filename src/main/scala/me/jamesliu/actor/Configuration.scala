@@ -16,7 +16,7 @@ object Configuration {
   case class BankIdentifier(id: String) extends AnyVal
 
   case class MerchantConfiguration(bankIdentifier: BankIdentifier)
-  var configuration: Map[MerchantId, MerchantConfiguration] = Map.empty
+  var configuration: Map[MerchantId, MerchantConfiguration] = Map(MerchantId("James")->MerchantConfiguration(BankIdentifier("bank_identifier_1")))
 
   def apply(): Behavior[Configuration.Message] = Behaviors.receive { (context, message) =>
     context.log.info(s"arriving message type: ${message.getClass.toString} -> ${message.toString}")
