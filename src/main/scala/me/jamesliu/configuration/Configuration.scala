@@ -1,8 +1,8 @@
-package configuration
+package me.jamesliu.configuration
 
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorRef, Behavior}
-import configuration.Configuration.{MerchantConfiguration, MerchantId}
+import me.jamesliu.configuration.Configuration.{MerchantConfiguration, MerchantId}
 
 object Configuration {
   sealed trait Message

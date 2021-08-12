@@ -3,3 +3,15 @@
 /project/target/
 /target/
 /target/streams/
+*.class
+*.log
+target
+.idea
+out
+*.DS_Store
+__pycache__/
+*.pyc
+*.db
+.bsp/
+*.iml
+null/
