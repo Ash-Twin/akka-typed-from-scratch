@@ -1,8 +1,8 @@
 import akka.actor.testkit.typed.scaladsl.ScalaTestWithActorTestKit
 import me.jamesliu.actor.Configuration
 import me.jamesliu.actor.Configuration.MerchantConfiguration
-import org.scalatest.wordspec.AnyWordSpecLike
 import me.jamesliu.common.PaymentBase._
+import org.scalatest.wordspec.AnyWordSpecLike
 
 class ConfigurationSpec extends ScalaTestWithActorTestKit with AnyWordSpecLike {
   "The Configuration actor" should {
@@ -28,7 +28,7 @@ class ConfigurationSpec extends ScalaTestWithActorTestKit with AnyWordSpecLike {
       configActor ! Configuration.Retrieve(MerchantId("James"), probe.ref)
       val response    = probe.expectMessageType[Configuration.Found]
       response.merchantId shouldBe MerchantId("James")
-      response.merchantConfiguration shouldNot be (MerchantConfiguration(BankIdentifier("bank_identifier_2")))
+      response.merchantConfiguration shouldNot be(MerchantConfiguration(BankIdentifier("bank_identifier_2")))
     }
   }
 }
