@@ -2,7 +2,7 @@ package me.jamesliu.actor
 
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorRef, Behavior}
-import me.jamesliu.actor.Configuration.{MerchantConfiguration, MerchantId}
+import me.jamesliu.common.PaymentBase._
 
 object Configuration {
   sealed trait Message
@@ -11,9 +11,6 @@ object Configuration {
   sealed trait Response
   final case class Found(merchantId: MerchantId, merchantConfiguration: MerchantConfiguration) extends Response
   final case class NotFound(merchantId: MerchantId)                                            extends Response
-
-  case class MerchantId(id: String)     extends AnyVal
-  case class BankIdentifier(id: String) extends AnyVal
 
   case class MerchantConfiguration(bankIdentifier: BankIdentifier)
   var configuration: Map[MerchantId, MerchantConfiguration] = Map(MerchantId("James")->MerchantConfiguration(BankIdentifier("bank_identifier_1")))
