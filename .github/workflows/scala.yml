@@ -20,3 +20,5 @@ jobs:
         distribution: 'adopt'
     - name: Run tests
       run: sbt test
+    - name: Run formats
+      run: sbt scalafmtAll
