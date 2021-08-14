@@ -32,7 +32,7 @@ object Configuration {
 
   final case class Found(merchantId: MerchantId, merchantConfiguration: MerchantConfiguration) extends Response
 
-  final case class NotFound(merchantId: MerchantId)                                            extends Response
+  final case class NotFound(merchantId: MerchantId) extends Response
 
   case class MerchantConfiguration(bankIdentifier: BankIdentifier)
 }
