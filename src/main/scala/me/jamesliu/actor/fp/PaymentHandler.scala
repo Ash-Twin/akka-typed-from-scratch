@@ -7,7 +7,7 @@ object PaymentHandler {
   def apply(configuration: ActorRef[Configuration.Message]): Behavior[PaymentHandling] =
     Behaviors.setup[PaymentHandling] { context =>
       // TODO request configuration and handle payment request
-      val configurationResponseAdaptor: ActorRef[Configuration.Response]     =
+      val configurationResponseAdaptor: ActorRef[Configuration.Response]      =
         context.messageAdapter(response => WrappedConfigResponse(response))
       def handle(request: Map[MerchantId, Handle]): Behavior[PaymentHandling] = Behaviors.receiveMessage {
         case paymentRequest: Handle         =>

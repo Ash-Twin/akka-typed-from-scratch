@@ -1,13 +1,12 @@
 package oop
 
 import akka.actor.testkit.typed.scaladsl.ScalaTestWithActorTestKit
-import akka.actor.typed.scaladsl.Behaviors
 import me.jamesliu.actor.oop.Configuration
 import me.jamesliu.actor.oop.Configuration.MerchantConfiguration
 import me.jamesliu.common.PaymentBase.{BankIdentifier, MerchantId}
 import org.scalatest.wordspec.AnyWordSpecLike
 
-class ConfigurationSpec extends ScalaTestWithActorTestKit with AnyWordSpecLike{
+class ConfigurationSpec extends ScalaTestWithActorTestKit with AnyWordSpecLike {
   "The Configuration actor" should {
     "not find a configuration for an unknown merchant" in {
 

@@ -21,6 +21,10 @@ class Configuration(context: ActorContext[Configuration.Cmd]) extends AbstractBe
 }
 object Configuration {
 
+  def apply(): Behavior[Cmd] = Behaviors.setup { context =>
+    new Configuration(context)
+  }
+
   sealed trait Cmd
 
   sealed trait Response
@@ -32,8 +36,4 @@ object Configuration {
   final case class NotFound(merchantId: MerchantId) extends Response
 
   case class MerchantConfiguration(bankIdentifier: BankIdentifier)
-
-  def apply(): Behavior[Cmd] = Behaviors.setup { context =>
-    new Configuration(context)
-  }
 }
