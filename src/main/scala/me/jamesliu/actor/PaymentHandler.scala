@@ -1,8 +1,8 @@
-package me.jamesliu.actor.oop
+package me.jamesliu.actor
 
 import akka.actor.typed.scaladsl.{AbstractBehavior, ActorContext, Behaviors}
 import akka.actor.typed.{ActorRef, Behavior}
-import me.jamesliu.actor.oop.PaymentHandler._
+import PaymentHandler._
 import me.jamesliu.common.PaymentBase._
 
 class PaymentHandler(context: ActorContext[PaymentHandler.Cmd]) extends AbstractBehavior[PaymentHandler.Cmd](context) {

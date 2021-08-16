@@ -1,8 +1,8 @@
-package me.jamesliu.actor.oop
+package me.jamesliu.actor
 
 import akka.actor.typed.scaladsl.{AbstractBehavior, ActorContext, Behaviors}
 import akka.actor.typed.{ActorRef, Behavior}
-import me.jamesliu.actor.oop.Configuration._
+import Configuration._
 import me.jamesliu.common.PaymentBase._
 
 class Configuration(context: ActorContext[Configuration.Cmd]) extends AbstractBehavior[Configuration.Cmd](context) {

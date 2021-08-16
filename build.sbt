@@ -17,7 +17,7 @@ val AkkaStack = Seq(
 
 ThisBuild / libraryDependencies ++= AkkaStack
 ThisBuild / coverageEnabled := true
-ThisBuild / coverageMinimum := 90
+ThisBuild / coverageMinimum := 80
 ThisBuild / coverageFailOnMinimum :=true
 lazy val root = Project(id = "root", base = file("."))
   .enablePlugins(JavaAppPackaging)

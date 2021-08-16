@@ -1,8 +1,8 @@
 package oop
 
 import akka.actor.testkit.typed.scaladsl.ScalaTestWithActorTestKit
-import me.jamesliu.actor.oop.Configuration
-import me.jamesliu.actor.oop.Configuration.MerchantConfiguration
+import me.jamesliu.actor.Configuration
+import Configuration.MerchantConfiguration
 import me.jamesliu.common.PaymentBase.{BankIdentifier, MerchantId}
 import org.scalatest.wordspec.AnyWordSpecLike
 
