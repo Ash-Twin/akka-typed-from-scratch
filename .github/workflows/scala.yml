@@ -18,7 +18,5 @@ jobs:
       with:
         java-version: '8'
         distribution: 'adopt'
-    - name: Run tests
-      run: sbt test
-    - name: Run formats
-      run: sbt scalafmtAll
+    - name: Clean
+      run: sbt clean test
