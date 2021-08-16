@@ -12,10 +12,12 @@ val AkkaStack = Seq(
   "com.typesafe.akka" %% "akka-http"                % AkkaHttpVersion,
   "com.typesafe.akka" %% "akka-actor-testkit-typed" % AkkaVersion % Test,
   "org.scalatest"     %% "scalatest"                % "3.2.9"     % Test,
-  "ch.qos.logback"     % "logback-classic"          % "1.1.3"     % Runtime
+  "ch.qos.logback"     % "logback-classic"          % "1.2.5"     % Runtime
 )
 
 ThisBuild / libraryDependencies ++= AkkaStack
-
+ThisBuild / coverageEnabled := true
+ThisBuild / coverageMinimum := 90
+ThisBuild / coverageFailOnMinimum :=true
 lazy val root = Project(id = "root", base = file("."))
   .enablePlugins(JavaAppPackaging)
