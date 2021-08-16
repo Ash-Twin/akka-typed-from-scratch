@@ -19,4 +19,4 @@ jobs:
         java-version: '8'
         distribution: 'adopt'
     - name: Clean
-      run: sbt clean test
+      run: sbt clean coverage test coverageReport
