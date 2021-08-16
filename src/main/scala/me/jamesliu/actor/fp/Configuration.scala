@@ -1,4 +1,4 @@
-package me.jamesliu.actor
+package me.jamesliu.actor.fp
 
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorRef, Behavior}
