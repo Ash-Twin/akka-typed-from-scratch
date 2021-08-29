@@ -1,35 +1,39 @@
 package me.jamesliu.actor
 
-import akka.actor.typed.scaladsl.Behaviors
+import akka.actor.typed.scaladsl.{AbstractBehavior, ActorContext, Behaviors}
 import akka.actor.typed.{ActorRef, Behavior}
-import me.jamesliu.actor.Configuration.{MerchantConfiguration, MerchantId}
+import Configuration._
+import me.jamesliu.common.PaymentBase._
 
+class Configuration(context: ActorContext[Configuration.Cmd]) extends AbstractBehavior[Configuration.Cmd](context) {
+  var configuration: Map[MerchantId, MerchantConfiguration] = Map(
+    MerchantId("James") -> MerchantConfiguration(BankIdentifier("bank_identifier_1"))
+  )
+
+  override def onMessage(msg: Cmd): Behavior[Cmd] = msg match {
+    case Retrieve(merchantId, replyTo) =>
+      configuration.get(merchantId) match {
+        case Some(value) => replyTo ! Found(merchantId, value)
+        case None        => replyTo ! NotFound(merchantId)
+      }
+      Behaviors.same
+  }
+}
 object Configuration {
-  sealed trait Message
-  final case class Retrieve(merchantId: MerchantId, replyTo: ActorRef[Response]) extends Message
+
+  def apply(): Behavior[Cmd] = Behaviors.setup { context =>
+    new Configuration(context)
+  }
+
+  sealed trait Cmd
 
   sealed trait Response
-  final case class Found(merchantId: MerchantId, merchantConfiguration: MerchantConfiguration) extends Response
-  final case class NotFound(merchantId: MerchantId)                                            extends Response
 
-  case class MerchantId(id: String)     extends AnyVal
-  case class BankIdentifier(id: String) extends AnyVal
+  final case class Retrieve(merchantId: MerchantId, replyTo: ActorRef[Response]) extends Cmd
+
+  final case class Found(merchantId: MerchantId, merchantConfiguration: MerchantConfiguration) extends Response
+
+  final case class NotFound(merchantId: MerchantId) extends Response
 
   case class MerchantConfiguration(bankIdentifier: BankIdentifier)
-  var configuration: Map[MerchantId, MerchantConfiguration] = Map(MerchantId("James")->MerchantConfiguration(BankIdentifier("bank_identifier_1")))
-
-  def apply(): Behavior[Configuration.Message] = Behaviors.receive { (context, message) =>
-    context.log.info(s"arriving message type: ${message.getClass.toString} -> ${message.toString}")
-    message match {
-      case Configuration.Retrieve(merchantId, replyTo) =>
-        configuration.get(merchantId) match {
-          case Some(configuration) =>
-            replyTo ! Configuration.Found(merchantId,configuration)
-            Behaviors.same
-          case None                =>
-            replyTo ! Configuration.NotFound(merchantId)
-            Behaviors.same
-        }
-    }
-  }
 }
